@@ -1,0 +1,61 @@
+alias 7zadd='7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
+alias andoridVideo2='ffmpeg -i $1 -s 360x240 -vcodec mpeg4 -acodec libfaac \
+    -r 23 -b 1200kb -mbd 2 -flags +4mv -trellis 2 -cmp 2 -subcmp 2 -ac 1 -ar \
+    44100 -ab 128kb -aspect 3:2 $1.mp4'
+alias androidVideo='ffmpeg -i $1 -s 320x240 -vcodec libx264 -acodec libfaac \
+    -ab 128kb -b 12800kb -ar 48000 -mbd 2 -coder 1 -cmp 2 -subcmp 2 \
+    -r 30000/1001 -trellis 2 $1.mp4'
+alias beep='sudo -n /usr/bin/beep'
+alias capture2video='mencoder tv:// \
+    -tv driver=v4l2:width=320:height=240:device=/dev/video0 \
+    -ovc lavc -o filename.avi'
+alias capture2videoNoSound='mencoder tv:// \
+    -tv driver=v4l2:width=640:height=480:device=/dev/video0 -nosound \
+    -ovc lavc -o filename.avi'
+alias captureJpg='mplayer -fps 1 -tv driver=v4l2 -vo jpeg tv://'
+alias captureJpg2='mplayer -vf screenshot -fps 15 tv:// \
+    -tv driver=v4l2:device=/dev/video0'
+alias firechrome='firejail --private google-chrome google.pl'
+alias fireff='firejail --caps --seccomp --private firefox google.pl'
+
+alias vi='vim'
+alias g='git'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias cp='cp -i'
+alias df='df -m'
+alias du='du -sm'
+alias mv='mv -i'
+alias rm='rm -i'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias free='free -m'
+alias diff='colordiff'
+alias grep='grep -n --color'
+alias tail='tail -n30'
+alias head='head -n30'
+alias qrencode='qrencode -t ANSI256'
+alias qrcode='xsel |\qrencode -o - |feh -B black -Z --scale-down -'
+
+alias alsamixer='alsamixer -c0'
+alias calendar='calendar -f ~/.calendar/calendar.lucas'
+alias feh='feh --scale-down'
+alias dhclear='rm -rfv /var/lib/dhclient/*'
+alias dynamips1='dynamips -H c7200-jk9s-mz.124-13a.bin --idle-pc=0x6086edd0'
+alias dynamips2='dynamips --idle-pc=0x6086edd0'
+alias httpfs='python -m SimpleHTTPServer'
+alias mplayer='mplayer -nocorrect-pts'
+alias now='date +%Y%m%d-%H:%M:%S'
+
+alias rfcUp='rsync -avz --delete ftp.rfc-editor.org::rfcs-text-only \
+	~/Work/Docs/RFC/'
+alias screenshot='(sleep 5; import -window root -crop +0+20 \
+	screenshot-`date +"%Y%m%d-%H%M"`.jpg)'
+alias translate='translate -brief'
+alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias \
+    --read-functions --show-tilde --show-dot'
+alias wine='WINEARCH=win32 WINEPREFIX=~/.wine wine'
+alias wol_dom='ether-wake -i wlan0 00:17:31:96:9A:CE'
+
+alias mc='TERM=xterm mc -u "$@"'
