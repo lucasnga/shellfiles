@@ -52,10 +52,11 @@ alias rfcUp='rsync -avz --delete ftp.rfc-editor.org::rfcs-text-only \
 	~/Work/Docs/RFC/'
 alias screenshot='(sleep 5; import -window root -crop +0+20 \
 	screenshot-`date +"%Y%m%d-%H%M"`.jpg)'
+alias partshot='(import png:- |xclip -selection clipboard -t "image/png")'
 alias translate='translate -brief'
 alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias \
     --read-functions --show-tilde --show-dot'
 alias wine='WINEARCH=win32 WINEPREFIX=~/.wine wine'
 alias wol_dom='ether-wake -i wlan0 00:17:31:96:9A:CE'
-
+alias rpmsizes='rpm -qa --qf '%{size}\t%{name}\n' |sort -g'
 alias mc='TERM=xterm mc -u "$@"'

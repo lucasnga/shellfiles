@@ -1,5 +1,4 @@
-convert2favico () { convert $1 -bordercolor white -border 0 \( -clone 0 -resize 16x16 \) \( -clone 0 -resize 32x32 \) \( -clone 0
-    -resize 48x48 \) \( -clone 0 -resize 64x64 \) -delete 0 -alpha off -colors 256 favicon.ico; }
+convert2favico () { convert $1 -bordercolor white -border 0 \( -clone 0 -resize 16x16 \) \( -clone 0 -resize 32x32 \) \( -clone 0 -resize 48x48 \) \( -clone 0 -resize 64x64 \) -delete 0 -alpha off -colors 256 favicon.ico; }
 findUpDir ()
 {
     path=$(pwd);
@@ -103,3 +102,13 @@ ytaudio ()
 }
 pogoda() { curl http://wttr.in/warsaw$1; }
 moon() { curl http://wttr.in/moon; }
+notes() {
+    if [ -z "$1" ]; then
+        vim $HOME/Work/00_Notesy/;
+    else
+        vim $HOME/Work/00_Notesy/notes."$1";
+    fi
+}
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}

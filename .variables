@@ -17,6 +17,6 @@ PERL_LOCAL_LIB_ROOT=/home/lucas/perl5
 PERL_MB_OPT='--install_base /home/lucas/perl5'
 PERL_MM_OPT=INSTALL_BASE=/home/lucas/perl5
 PYTHONPATH='~/Python'
-TERM=st-256color
+TERM=xterm-256color
 VIRTUALENVWRAPPER_SCRIPT=/bin/virtualenvwrapper.sh
 HISTCONTROL=ignoreboth
