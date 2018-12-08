@@ -59,4 +59,4 @@ alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias \
 alias wine='WINEARCH=win32 WINEPREFIX=~/.wine wine'
 alias wol_dom='ether-wake -i wlan0 00:17:31:96:9A:CE'
 alias rpmsizes='rpm -qa --qf '%{size}\t%{name}\n' |sort -g'
-alias mc='TERM=xterm mc -u "$@"'
+alias google-chrome='google-chrome --incognito'
