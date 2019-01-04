@@ -11,7 +11,7 @@ JVM_ARGS='-Xmx1024m -XX:MaxPermSize=512m'
 LANG=en_US.UTF-8
 GOPATH=$HOME/Work/go
 GOROOT=/usr/lib/golang
-PATH=/home/lucas/bin/translate-shell:/home/lucas/perl5/bin:/home/lucas/bin/translate-shell:/home/lucas/perl5/bin:/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/bin:/usr/ucb:/usr/local/sbin:/usr/sbin:/usr/bin:/usr/sbin:/sbin:/bin:/home/lucas/bin:$HOME/Work/go/bin:/usr/bin:/usr/sbin:/sbin:/bin:/home/lucas/bin:/usr/lib/golang/bin:$HOME/bin/angularcli/node_modules/.bin:$PATH:$HOME/bin
+PATH=/home/lucas/bin/translate-shell:/home/lucas/perl5/bin:/home/lucas/bin/translate-shell:/home/lucas/perl5/bin:/usr/lib64/qt-3.3/bin:/usr/lib64/ccache:/bin:/usr/bin:/usr/bin:/usr/ucb:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/usr/sbin:/sbin:/bin:/home/lucas/bin:$HOME/Work/go/bin:/usr/bin:/usr/sbin:/sbin:/bin:/home/lucas/bin:/usr/lib/golang/bin:$HOME/bin/angularcli/node_modules/.bin:$PATH:$HOME/bin
 PERL5LIB=/home/lucas/perl5/lib/perl5/x86_64-linux-thread-multi:/home/lucas/perl5/lib/perl5
 PERL_LOCAL_LIB_ROOT=/home/lucas/perl5
 PERL_MB_OPT='--install_base /home/lucas/perl5'
