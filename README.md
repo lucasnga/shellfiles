@@ -12,10 +12,10 @@ git clone https://github.com/lucasnga/shellfiles ~/.shellfiles
 add to your main shell rc file (~/.bashrc or ~/.kshrc)
 
 ```shell
-. /home/lucas/.shellfiles/.variables
-. /home/lucas/.shellfiles/.functions
-. /home/lucas/.shellfiles/.aliases
-. /home/lucas/.shellfiles/.runtime
+. /home/lucas/.shellfiles/variables
+. /home/lucas/.shellfiles/functions
+. /home/lucas/.shellfiles/aliases
+. /home/lucas/.shellfiles/run
 ```
 
 ## What it is?
