@@ -1,0 +1,166 @@
+convert2favico () { convert $1 -bordercolor white -border 0 \( -clone 0 -resize 16x16 \) \( -clone 0 -resize 32x32 \) \( -clone 0 -resize 48x48 \) \( -clone 0 -resize 64x64 \) -delete 0 -alpha off -colors 256 favicon.ico; }
+findUpDir () {
+    path=$(pwd);
+    while [[ "$path" != "" && ! -e "$path/$1" ]]; do
+        path=${path%/*};
+    done;
+    echo "$path"
+}
+flac2mp3 () { IFS=$'\n\n' ffmpeg -i "$1" -ab 128k -ac 2 -ar 44100 "$1.mp3"; }
+flv23gp ()  { IFS=$'\n\n' ffmpeg -i "$1" -s 176.144 -vcodec mpeg4 -r 14 -b 10 -acodec copy "$1.3gp"; }
+flv2mp3 ()  { IFS=$'\n\n' ffmpeg -i "$1" -ab 128000 -ar 44100 "$1.mp3"; }
+flvtoavi () { IFS=$'\n\n' mencoder "$1" -o "$1.avi" -of lavf -ovc lavc -lavcopts format=h263 -lavfopts format=mp4 -nosound; }
+jpg2pdf ()  { for file in `seq 8`;do convert 000000$file.JPG $file.pdf;done }
+low () {
+    for x in `ls`; do
+        if [ ! -f $x ]; then
+            continue;
+        fi;
+        lc=`echo $x  | tr '[A-Z]' '[a-z]'`;
+        if [ $lc != $x ]; then
+            mv -i -i $x $lc;
+        fi;
+    done
+}
+man() {
+	env \
+	GROFF_NO_SGR=1 \
+	LESS_TERMCAP_md=$'\e[1;36m' \
+	LESS_TERMCAP_me=$'\e[0m' \
+	LESS_TERMCAP_se=$'\e[0m' \
+	LESS_TERMCAP_so=$'\e[1;40;92m' \
+	LESS_TERMCAP_ue=$'\e[0m' \
+	LESS_TERMCAP_us=$'\e[1;32m' \
+	man "$@"
+}
+m4a2mp3 () {
+    for i in *.m4a; do
+        faad "$i";
+        x=`echo "$i"|sed -e 's/.m4a/.wav/'`;
+        y=`echo "$i"|sed -e 's/.m4a/.mp3/'`;
+        lame -h -b 192 "$x" "$y";
+        rm -i "$x";
+    done
+}
+mp3normalize () { find . -iname '*.mp3' -exec mp3gain -r -m +4 -c {} \; ;}
+mp3tomp3 () {
+    IFS=$'\n\n';
+    for x in [ `ls -1 *.mp3` ];do
+        lame --preset cbr 128 $x new-${x};
+        mp3copytags $x new-${x};
+    done
+}
+mp3wav () {
+    IFS=$'\n\n';
+    for file in `ls *.flac`;
+    do
+        ffmpeg -i $file -ab 128k -ac 2 -ar 44100 $file.mp3;
+    done
+}
+myip () {
+    exec 5<> /dev/tcp/116.203.139.96/80;
+    echo -e "GET /api/info/IPv4Address HTTP/1.1\r\nHost: ipv4.myip.dk\r\nConnection: close\r\n\r\n" 1>&5;
+    cat 0<&5 |tail -3 |head -1;
+}
+node_run () {
+    local NMD=$(findUpDir "node_modules");
+    if [ ! -d "$NMD" ]; then
+        echo 'nie na sciezce';
+        return;
+    else
+        $NMD/node_modules/.bin/$@;
+    fi
+}
+strongpw () {
+    read -rs -p 'Encryption key: ' key;
+    echo '';
+    echo -n "$key:$1" | sha256sum | perl -ne "s/([0-9a-f]{2})/print chr hex \$1/gie" | base64 | tr +/ Ea | cut -b 1-20
+}
+usuntaby () { sed -e 's/[ ^t]*//g' "$1"; }
+vhd2vmdk () { vmware-vdiskmanager -r "$1" -t 0 "$1.vmdk"; }
+wavtocda () {
+    IFS='
+
+';
+    for file in *.wav;
+    do
+        sox -a "$file" "$file.cdda";
+    done
+}
+ytaudio-dl () { youtube-dl --audio-format mp3 -t -x "$1"; }
+ytaudio () { mpv -vo null --hwdec=vaapi --ytdl-format="bestaudio" $1; }
+pogoda() { curl http://wttr.in/warsaw$1; }
+moon() { curl http://wttr.in/moon; }
+notes() {
+    local DIR=$HOME/Work/Moje/00_Notesy/
+    if [ -z "$1" ]; then
+        nvim $DIR;
+    elif [ "$1" == "main" ]; then
+        nvim $HOME/Work/Moje/Notes.text;
+    else
+        nvim $DIR/notes."$1";
+    fi
+}
+memo() {
+    local DIR=$HOME/Work/Moje/00_Diary/
+    if [ -z "$1" ]; then
+        $EDITOR $DIR;
+    elif [ "$1" == "main" ]; then
+        $EDITOR $HOME/Work/Moje/Diary.text;
+    elif [ "$1" == "p" ] || [ "$1" == "prev" ]; then
+        $EDITOR $DIR/diary.`date --date="yesterday" +%Y%m%d`
+    elif [ "$1" == "n" ] || [ "$1" == "new" ]; then
+        $EDITOR $DIR/diary.`date +%Y%m%d`
+    elif [ "$1" == "l" ] || [ "$1" == "list" ]; then
+        $EDITOR $DIR/
+    else
+        $EDITOR $DIR/diary."$1";
+    fi
+}
+
+parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'; }
+dockerip() { docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $1; }
+
+# caniuse for quick access to global support list
+cani() {
+  local feats=$(~/bin/ciu | sort -rn | fzf --ansi -m | sed -e 's/^.*%\ *//g' | sed -e 's/   .*//g')
+if [[ $feats ]]; then
+    for feat in $(echo $feats)
+    do caniuse $feat
+    done
+  fi
+}
+
+# Select a docker container to start and attach to
+function da() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -1 -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker start "$cid" && docker attach "$cid"
+}
+# Select a running docker container to stop
+function ds() {
+  local cid
+  cid=$(docker ps | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker stop "$cid"
+}
+# Select a docker container to remove
+function drm() {
+  local cid
+  cid=$(docker ps -a | sed 1d | fzf -q "$1" | awk '{print $1}')
+
+  [ -n "$cid" ] && docker rm "$cid"
+}
+
+# fzf use fd
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
+
+# vi:ft=sh

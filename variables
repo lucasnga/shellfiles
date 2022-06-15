@@ -1,0 +1,26 @@
+export HISTFILE="$HOME/.${SHELL##*/}_history"
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export GPGKEY=243440AF
+export GREP_COLORS='mt=38;5;0;38;5;100:fn=38;5;104:ln=38;5;214:se=38;5;242:bn=38;5;226'
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000
+export HISTCONTROL=ignoreboth
+export IFS=$' \t\n'
+export JVM_ARGS='-Xmx1024m -XX:MaxPermSize=512m'
+export LANG=en_US.UTF-8
+export GOPATH=$HOME/Work/Moje/go
+export GOROOT=/usr/lib/golang
+export PLAN9=/usr/lib/plan9
+export PATH=$PATH:/home/lucas/bin/translate-shell:/usr/lib64/ccache:/usr/local/sbin:/usr/local/bin:$HOME/bin:$HOME/Work/Moje/go/bin:/usr/lib/golang/bin:$HOME/.local/bin:$PLAN9/bin:$HOME/.gem/ruby/bin
+export PERL5LIB=/home/lucas/perl5/lib/perl5/x86_64-linux-thread-multi:/home/lucas/perl5/lib/perl5
+export PERL_LOCAL_LIB_ROOT=/home/lucas/perl5
+export PERL_MB_OPT='--install_base /home/lucas/perl5'
+export PERL_MM_OPT=INSTALL_BASE=/home/lucas/perl5
+export PYTHONPATH=$PYTHONPATH:'~/Python'
+export VIRTUALENVWRAPPER_SCRIPT=/bin/virtualenvwrapper.sh
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+#export XDG_CONFIG_HOME=$HOME/.config
+#export XDG_CACHE_HOME=$HOME/.ccache
+export BROWSER=/bin/google-chrome
+
