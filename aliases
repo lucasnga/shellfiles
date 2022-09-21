@@ -50,7 +50,7 @@ alias dynamips1='dynamips -H c7200-jk9s-mz.124-13a.bin --idle-pc=0x6086edd0'
 alias dynamips2='dynamips --idle-pc=0x6086edd0'
 #alias httpfs='python -m SimpleHTTPServer'
 alias httpfs='python3 -m http.server'
-alias mplayer='mpv -nocorrect-pts'
+alias mplayer='mpv'
 alias now='date +%Y%m%d-%H:%M:%S'
 
 alias rfcUp='rsync -avz --delete ftp.rfc-editor.org::rfcs-text-only \
