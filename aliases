@@ -15,8 +15,6 @@ alias capture2videoNoSound='mencoder tv:// \
 alias captureJpg='mplayer -fps 1 -tv driver=v4l2 -vo jpeg tv://'
 alias captureJpg2='mplayer -vf screenshot -fps 15 tv:// \
     -tv driver=v4l2:device=/dev/video0'
-alias firechrome='firejail --private google-chrome google.pl'
-alias fireff='firejail --caps --seccomp --private firefox google.pl'
 
 alias g='git'
 alias egrep='egrep --color=always'
@@ -71,5 +69,11 @@ alias st='~/bin/st -f "Hack:size=12:antialias=true"'
 alias n='nnn'
 alias fd='fd -L'
 alias find='find -L'
+alias gcal="gcal -H '\e[34m:\e[0m:\e[31m:\e[0m' -q PL"
+alias dell_brightness="ddcutil setvcp 10"
+
+alias d='docker'
+alias k='kubectl'
+alias kn='kubectl config set-context --current --namespace'
 
 # vi:ft=sh

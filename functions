@@ -87,7 +87,7 @@ wavtocda () {
         sox -a "$file" "$file.cdda";
     done
 }
-ytaudio-dl () { youtube-dl --audio-format mp3 -t -x "$1"; }
+ytaudiodl () { youtube-dl --audio-format mp3 -t -x "$1"; }
 ytaudio () { mpv -vo null --hwdec=vaapi --ytdl-format="bestaudio" $1; }
 pogoda() { curl http://wttr.in/warsaw$1; }
 moon() { curl http://wttr.in/moon; }

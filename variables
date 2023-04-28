@@ -3,8 +3,8 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export GPGKEY=243440AF
 export GREP_COLORS='mt=38;5;0;38;5;100:fn=38;5;104:ln=38;5;214:se=38;5;242:bn=38;5;226'
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000
+export HISTFILESIZE=9999999
+export HISTSIZE=9999999
 export HISTCONTROL=ignoreboth
 export IFS=$' \t\n'
 export JVM_ARGS='-Xmx1024m -XX:MaxPermSize=512m'
@@ -23,4 +23,5 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #export XDG_CONFIG_HOME=$HOME/.config
 #export XDG_CACHE_HOME=$HOME/.ccache
 export BROWSER=/bin/google-chrome
+export CARGO REGISTRIES CRATES IO PROTOCOL=sparse
 
