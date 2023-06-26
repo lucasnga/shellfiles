@@ -72,6 +72,7 @@ alias find='find -L'
 alias gcal="gcal -H '\e[34m:\e[0m:\e[31m:\e[0m' -q PL"
 alias dell_brightness="ddcutil setvcp 10"
 
+alias c='clear'
 alias d='docker'
 alias k='kubectl'
 alias kn='kubectl config set-context --current --namespace'
