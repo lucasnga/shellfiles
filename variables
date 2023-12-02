@@ -6,6 +6,7 @@ export GREP_COLORS='mt=38;5;0;38;5;100:fn=38;5;104:ln=38;5;214:se=38;5;242:bn=38
 export HISTFILESIZE=9999999
 export HISTSIZE=9999999
 export HISTCONTROL=ignoreboth
+export HISTIGNORE='?:??'
 export IFS=$' \t\n'
 export JVM_ARGS='-Xmx1024m -XX:MaxPermSize=512m'
 export LANG=en_US.UTF-8
