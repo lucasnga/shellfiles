@@ -56,6 +56,7 @@ alias rfcUp='rsync -avz --delete ftp.rfc-editor.org::rfcs-text-only \
 alias screenshot='(sleep 5; import -window root -crop +0+20 \
 	screenshot-`date +"%Y%m%d-%H%M"`.jpg)'
 alias partshot='(import png:- |xclip -selection clipboard -t "image/png")'
+alias screenkey='screenkey --geometry 711x900+1812+0 -s medium --opacity 0.4'
 alias translate='translate -brief'
 alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias \
     --read-functions --show-tilde --show-dot'
