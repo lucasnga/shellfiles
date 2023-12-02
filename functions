@@ -106,15 +106,15 @@ memo() {
     if [ -z "$1" ]; then
         $EDITOR $DIR;
     elif [ "$1" == "main" ]; then
-        $EDITOR $HOME/Work/Moje/Diary.text;
+        $EDITOR $HOME/Work/Moje/Diary.text.md;
     elif [ "$1" == "p" ] || [ "$1" == "prev" ]; then
-        $EDITOR $DIR/diary.`date --date="yesterday" +%Y%m%d`
+        $EDITOR $DIR/diary.`date --date="yesterday" +%Y%m%d`.md
     elif [ "$1" == "n" ] || [ "$1" == "new" ]; then
-        $EDITOR $DIR/diary.`date +%Y%m%d`
+        $EDITOR $DIR/diary.`date +%Y%m%d`.md
     elif [ "$1" == "l" ] || [ "$1" == "list" ]; then
         $EDITOR $DIR/
     else
-        $EDITOR $DIR/diary."$1";
+        $EDITOR $DIR/diary."$1".md;
     fi
 }
 
