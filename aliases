@@ -72,6 +72,7 @@ alias find='find -L'
 alias gcal="gcal -H '\e[34m:\e[0m:\e[31m:\e[0m' -q PL"
 alias dell_brightness="ddcutil getvcp 10;ddcutil setvcp 10"
 
+alias n='/usr/local/bin/nnn'
 alias c='clear'
 alias d='docker'
 alias k='kubectl'
