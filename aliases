@@ -1,3 +1,5 @@
+source ~/.bash_completion.d/complete_alias
+
 alias 7zadd='7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on'
 alias andoridVideo2='ffmpeg -i $1 -s 360x240 -vcodec mpeg4 -acodec libfaac \
     -r 23 -b 1200kb -mbd 2 -flags +4mv -trellis 2 -cmp 2 -subcmp 2 -ac 1 -ar \
@@ -17,6 +19,8 @@ alias captureJpg2='mplayer -vf screenshot -fps 15 tv:// \
     -tv driver=v4l2:device=/dev/video0'
 
 alias g='git'
+complete -F _complete_alias g
+
 alias egrep='egrep --color=always'
 alias fgrep='fgrep --color=always'
 alias cp='cp -i'
@@ -65,6 +69,7 @@ alias wol_dom='ether-wake -i wlan0 00:17:31:96:9A:CE'
 alias rpmsizes='rpm -qa --qf '%{size}\t%{name}\n' |sort -g'
 alias castterm='ffcast -svv rec -m 4 screencast.mov'
 alias gitlistobjectsbysize='git rev-list --all | xargs -rL1 git ls-tree -r --long | sort -uk3 | sort -rnk4'
+alias gitdeleteoldbranches="for k in \$(git branch | sed /\*/d); do   if [ -z \"\$(git log -1 --since='1 week ago' -s \$k)\" ]; then git branch -D \$k; fi; done"
 alias ip='ip -color=auto'
 alias st='~/bin/st -f "Hack:size=14:antialias=true"'
 alias fd='fd -L'
@@ -75,7 +80,9 @@ alias dell_brightness="ddcutil getvcp 10;ddcutil setvcp 10"
 alias n='/usr/local/bin/nnn'
 alias c='clear'
 alias d='docker'
+complete -F _complete_alias d
 alias k='kubectl'
+complete -F _complete_alias k
 alias kn='kubectl config set-context --current --namespace'
 alias open='xdg-open'
 alias o='xdg-open'
