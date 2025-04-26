@@ -50,3 +50,11 @@ export GTAGS=$HOME/.gtags/GTAGS
 export GRTAGS=$HOME/.gtags/GRTAGS
 # Tag file for source files.
 export GPATH=$HOME/.gtags/GPATH
+
+# .NET
+export ASPNETCORE_Kestrel__Certificates__Default__Password=""
+export ASPNETCORE_Kestrel__Certificates__Default__Path="/home/lucas/.certs/localhost.pfx"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
