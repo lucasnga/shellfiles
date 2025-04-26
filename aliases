@@ -40,7 +40,7 @@ alias tail='tail -n30'
 alias head='head -n30'
 alias less='less -R'
 alias qrencode='qrencode -t ANSI256'
-alias qrcode='xsel |\qrencode -o - |feh -B black -Z --scale-down -'
+alias qrcode='[ -n "$DISPLAY" ] && CMD="xsel" || CMD="wl-paste" && eval "$CMD" | qrencode -s 30 -t png -o - |imv -'
 alias vim='nvim'
 alias vi='nvim'
 
