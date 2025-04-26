@@ -42,3 +42,11 @@ export NNN_FIFO=/tmp/nnn.fifo
 
 # android sdk
 export ANDROID_SDK=/home/lucas/Android/Sdk
+
+# GNU global tags
+# Tag file for definitions.
+export GTAGS=$HOME/.gtags/GTAGS
+# Tag file for references.
+export GRTAGS=$HOME/.gtags/GRTAGS
+# Tag file for source files.
+export GPATH=$HOME/.gtags/GPATH
