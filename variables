@@ -25,4 +25,17 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 #export XDG_CACHE_HOME=$HOME/.ccache
 export BROWSER=/bin/google-chrome
 export CARGO REGISTRIES CRATES IO PROTOCOL=sparse
+export GTK_THEME='Adwaita:dark'
 
+# nnn
+export NNN_OPTS='c'
+export NNN_BMS='d:~/Dokumenty;w:~/Work;D:~/Downloads/'
+export NNN_PLUG='f:fzcd;F:fzopen'
+# export NNN_OPENER='nuke'
+export NNN_COLORS='1234'
+# export NNN_SEL
+export NNN_ARCHIVE="\\.(7z|bz2|gz|tar|tgz|zip)$"
+export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
+# export NNN_SSHFS='sshfs -o reconnect,idmap=user' 5 	custom SSHFS cmd
+# export NNN_RCLONE='rclone mount --read-only' 5 	custom rclone cmd
+export NNN_FIFO=/tmp/nnn.fifo
