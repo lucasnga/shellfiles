@@ -101,21 +101,24 @@ notes() {
         nvim $DIR/notes."$1";
     fi
 }
+
 memo() {
-    local DIR=$HOME/Work/Moje/00_Diary/
-    if [ -z "$1" ]; then
-        $EDITOR $DIR;
-    elif [ "$1" == "main" ]; then
-        $EDITOR $HOME/Work/Moje/Diary.text.md;
-    elif [ "$1" == "p" ] || [ "$1" == "prev" ]; then
-        $EDITOR $DIR/diary.`date --date="yesterday" +%Y%m%d`.md
-    elif [ "$1" == "n" ] || [ "$1" == "new" ]; then
-        $EDITOR $DIR/diary.`date +%Y%m%d`.md
-    elif [ "$1" == "l" ] || [ "$1" == "list" ]; then
-        $EDITOR $DIR/
-    else
-        $EDITOR $DIR/diary."$1".md;
-    fi
+    DIR="$HOME/Work/Moje/00_Diary"
+    TODAY=$(date +%Y%m%d)
+    YESTERDAY=$(date -d "yesterday" +%Y%m%d 2>/dev/null || date -v-1d +%Y%m%d)  # Linux & BSD/macOS fallback
+
+    case "$1" in
+        ""|"l"|"list")
+            $EDITOR "$DIR/" ;;
+        "main")
+            $EDITOR "$HOME/Work/Moje/Diary.text.md" ;;
+        "p"|"prev")
+            $EDITOR "$DIR/diary.$YESTERDAY.md" ;;
+        "n"|"new")
+            $EDITOR "$DIR/diary.$TODAY.md" ;;
+        *)
+            $EDITOR "$DIR/diary.$1.md" ;;
+    esac
 }
 
 parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'; }
