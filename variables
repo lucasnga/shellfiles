@@ -39,3 +39,6 @@ export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 # export NNN_SSHFS='sshfs -o reconnect,idmap=user' 5 	custom SSHFS cmd
 # export NNN_RCLONE='rclone mount --read-only' 5 	custom rclone cmd
 export NNN_FIFO=/tmp/nnn.fifo
+
+# android sdk
+export ANDROID_SDK=/home/lucas/Android/Sdk
