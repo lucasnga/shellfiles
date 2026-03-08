@@ -152,4 +152,69 @@ _fzf_compgen_dir() {
     fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+_proj_set_dir() {
+    local RESURRECT_DIR=$1
+    # Ustaw globalnie zanim skrypt się załaduje
+    tmux set-option -gq "@resurrect-dir" "$RESURRECT_DIR"
+    mkdir -p "$RESURRECT_DIR"
+}
+
+p() {
+    local PROJ=${1:-$(
+        { tmux ls -F '#S' 2>/dev/null; \ls ~/.tmux/resurrect/projects/ 2>/dev/null; } \
+        | sort -u \
+        | fzf --prompt="project: "
+    )}
+    [[ -z "$PROJ" ]] && return 1
+
+    local RESURRECT_DIR=~/.tmux/resurrect/projects/$PROJ
+    mkdir -p "$RESURRECT_DIR"
+
+    if tmux has-session -t "$PROJ" 2>/dev/null; then
+        tmux attach -t "$PROJ"
+    else
+        tmux new-session -d -s "$PROJ"
+        # Teraz sesja istnieje - ustaw opcję wewnątrz niej
+        tmux set-option -t "$PROJ" -gq "@resurrect-dir" "$RESURRECT_DIR"
+        if [[ -f "$RESURRECT_DIR/last" ]]; then
+            tmux run-shell -t "$PROJ" ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+        fi
+        tmux attach -t "$PROJ"
+    fi
+}
+
+pk() {
+    local PROJ=${1:-$(tmux ls -F '#S' 2>/dev/null | fzf --prompt="kill project: ")}
+    [[ -z "$PROJ" ]] && return 1
+
+    local RESURRECT_DIR=~/.tmux/resurrect/projects/$PROJ
+    _proj_set_dir "$RESURRECT_DIR"
+    tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
+    sleep 1
+    tmux kill-session -t "$PROJ"
+}
+
+pc() {
+    local PROJ=${1:-$(
+        { tmux ls -F '#S' 2>/dev/null; \ls ~/.tmux/resurrect/projects/ 2>/dev/null; } \
+        | sort -u \
+        | fzf --prompt="switch project: "
+    )}
+    [[ -z "$PROJ" ]] && return 1
+
+    local RESURRECT_DIR=~/.tmux/resurrect/projects/$PROJ
+    mkdir -p "$RESURRECT_DIR"
+
+    if tmux has-session -t "$PROJ" 2>/dev/null; then
+        tmux set-option -t "$PROJ" -gq "@resurrect-dir" "$RESURRECT_DIR"
+        tmux switch-client -t "$PROJ"
+    else
+        tmux new-session -d -s "$PROJ"
+        tmux set-option -t "$PROJ" -gq "@resurrect-dir" "$RESURRECT_DIR"
+        if [[ -f "$RESURRECT_DIR/last" ]]; then
+            tmux run-shell -t "$PROJ" ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+        fi
+        tmux switch-client -t "$PROJ"
+    fi
+}
 # vi:ft=sh
