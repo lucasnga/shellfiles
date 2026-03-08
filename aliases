@@ -87,5 +87,6 @@ alias kn='kubectl config set-context --current --namespace'
 alias open='xdg-open'
 alias o='xdg-open'
 alias rem='remind -wt,0 -cu -@2,0,1 ~/.reminders'
+alias clisting='for f in *.c *.h; do echo; echo "/* ===================== $f ===================== */"; echo ; cat "$f" ;done'
 
 # vi:ft=sh
